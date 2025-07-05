@@ -10,6 +10,8 @@ export class EBook extends AbstractBook {
   }
 
   getDescription(): string {
-    return `Електронна книга: ${this.title}, ${this.year}, ${this.author.name}, ${this.url}`;
+    return `Електронна книга: ${this.getTitle()}, ${this.getYear()}, ${this.getAuthor()}, ${
+      this.url
+    }`;
   }
 }

@@ -1,8 +1,8 @@
 import { AbstractBook } from "./AbstractBook";
 
 export class Copy {
-  book: AbstractBook;
-  isAvailable: boolean;
+  private book: AbstractBook;
+  private isAvailable: boolean;
 
   constructor(book: AbstractBook, isAvailable: boolean = true) {
     this.book = book;
@@ -17,5 +17,13 @@ export class Copy {
       console.log(`✅ Книга в наявності`);
       return true;
     }
+  }
+
+  getBook(): AbstractBook {
+    return this.book;
+  }
+
+  setAvailability(value: boolean): void {
+    this.isAvailable = value;
   }
 }

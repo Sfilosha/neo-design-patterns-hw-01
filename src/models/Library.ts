@@ -25,9 +25,11 @@ export class Library {
     this.readers.push(reader);
   }
   getAvailableCopies(): Copy[] {
-    return this.copies.filter((copy) => copy.isAvailable);
+    return this.copies.filter((copy) => copy.isCopyAvailable());
   }
   findBookByAuthor(author: string): AbstractBook[] {
-    return this.books.filter((book) => book.author.name == author);
+    return this.books.filter(
+      (book) => book.getAuthor().getAuthorName() == author
+    );
   }
 }

@@ -7,6 +7,6 @@ export class Book extends AbstractBook {
   }
 
   getDescription(): string {
-    return `Фізична книга: ${this.title}, ${this.year}, ${this.author.name}`;
+    return `Фізична книга: ${this.getTitle()}, ${this.getYear()}, ${this.getAuthor()}`;
   }
 }
