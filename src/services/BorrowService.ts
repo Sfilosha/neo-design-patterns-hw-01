@@ -8,29 +8,33 @@ export class BorrowService {
       return false;
     }
 
-    reader.borrowedBooks.push(copy);
+    reader.addBorrowedBook(copy);
     copy.setAvailability(false);
-    console.log(`Читач ${reader.id} взяв книгу ${copy.getBook().getTitle()}`);
+    console.log(
+      `Читач ${reader.getName()} взяв книгу ${copy.getBook().getTitle()}`
+    );
     return true;
   }
 
   returnBook(reader: Reader, copy: Copy): boolean {
-    const hasBook = reader.borrowedBooks.some(
-      (borrowedCopy) => borrowedCopy === copy
-    );
+    const hasBook = reader
+      .getBorrowedBooks()
+      .some((borrowedCopy) => borrowedCopy === copy);
     if (!hasBook) {
       console.log(
-        `Читач ${reader.id} не брав книгу ${copy.getBook().getTitle()}`
+        `Читач ${reader.getName()} не брав книгу ${copy.getBook().getTitle()}`
       );
       return false;
     }
+    const newList = reader
+      .getBorrowedBooks()
+      .filter((borrowedCopy) => borrowedCopy !== copy);
 
-    reader.borrowedBooks = reader.borrowedBooks.filter(
-      (borrowedCopy) => borrowedCopy !== copy
-    );
+    reader.setBorrowedBooks(newList);
+
     copy.setAvailability(true);
     console.log(
-      `Читач ${reader.id} повернув книгу ${copy.getBook().getTitle()}`
+      `Читач ${reader.getName()} повернув книгу ${copy.getBook().getTitle()}`
     );
     return true;
   }
